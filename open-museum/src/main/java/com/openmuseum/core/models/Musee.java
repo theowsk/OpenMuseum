@@ -2,7 +2,15 @@ package com.openmuseum.core.models;
 
 import java.util.Date;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 public class Musee {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	
 	private String nom;
 	private String ville;
@@ -17,8 +25,9 @@ public class Musee {
 		
 	}
 	
-	public Musee(String nom, String ville, String departement, String region, String codePostal, Date dateOuverture,
+	public Musee(Long id, String nom, String ville, String departement, String region, String codePostal, Date dateOuverture,
 			Boolean accessible) {
+		this.id = id;
 		this.nom = nom;
 		this.ville = ville;
 		this.departement = departement;
@@ -26,6 +35,14 @@ public class Musee {
 		this.codePostal = codePostal;
 		this.dateOuverture = dateOuverture;
 		this.accessible = accessible;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getNom() {

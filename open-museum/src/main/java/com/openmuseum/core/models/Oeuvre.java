@@ -1,10 +1,17 @@
 package com.openmuseum.core.models;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 public class Oeuvre {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	
 	private String denomination;
 	private String titre;
@@ -25,9 +32,10 @@ public class Oeuvre {
 
 	}
 
-	public Oeuvre(String denomination, String titre, String periodeCrea, String materiaux, String dimensions,
+	public Oeuvre(Long id, String denomination, String titre, String periodeCrea, String materiaux, String dimensions,
 			String decouverte, String reference, Domaine domaine, Auteur auteur, Epoque epoque, Musee localisation,
 			StatutJuridique statutJuridique) {
+		this.id = id;
 		this.denomination = denomination;
 		this.titre = titre;
 		this.periodeCrea = periodeCrea;
@@ -40,6 +48,14 @@ public class Oeuvre {
 		this.epoque = epoque;
 		this.localisation = localisation;
 		this.statutJuridique = statutJuridique;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getDenomination() {
