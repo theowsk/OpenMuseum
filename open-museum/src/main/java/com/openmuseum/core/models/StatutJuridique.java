@@ -1,21 +1,45 @@
 package com.openmuseum.core.models;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
+
 public class StatutJuridique {
 	
+	@Id
+	@Column(name="idOeuvre", unique=true, nullable=false)
+	// FK
+	private int idOeuvre;
+	
+	@Column(name="proprietaire", unique=false, nullable=true)
 	private String proprietaire;
+	
+	@Column(name="identiteJuridique", unique=false, nullable=false)
 	private String identiteJuridique;
+	
+	@Column(name="proprietePrivee", unique=false, nullable=false)
 	private Boolean proprietePrivee;
+	
+	@Column(name="don", unique=false, nullable=true)
 	private Boolean don;
 	
 	public StatutJuridique() {
 		
 	}
 
-	public StatutJuridique(String proprietaire, String identiteJuridique, Boolean proprietePrivee, Boolean don) {
+	public StatutJuridique(int idOeuvre, String proprietaire, String identiteJuridique, Boolean proprietePrivee, Boolean don) {
+		this.idOeuvre= idOeuvre;
 		this.proprietaire = proprietaire;
 		this.identiteJuridique = identiteJuridique;
 		this.proprietePrivee = proprietePrivee;
 		this.don = don;
+	}
+
+	public int getIdOeuvre() {
+		return idOeuvre;
+	}
+
+	public void setIdOeuvre(int idOeuvre) {
+		this.idOeuvre = idOeuvre;
 	}
 
 	public String getProprietaire() {

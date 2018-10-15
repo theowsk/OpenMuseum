@@ -2,28 +2,42 @@ package com.openmuseum.core.models;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+@Entity
 public class Auteur {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	@Column(name="idAuteur", unique=true, nullable=false)
+	private int id;
 	
+	@Column(name="nom", unique=false, nullable=false)
 	private String nom;
+	
+	@Column(name="prenom", unique=false, nullable=true)
 	private String prenom;
+	
+	@Column(name="nationalite", unique=false, nullable=true)
 	private String nationalite;
+	
+	@Column(name="dateNaissance", unique=false, nullable=true)
 	private Date birthDate;
+	
+	@Column(name="dateMort", unique=false, nullable=true)
 	private Date deathDate;
+	
 	// private Epoque epoqueAppartenance;
 	
 	public Auteur() {
 		
 	}
 	
-	public Auteur(Long id, String nom, String prenom, String nationalite, Date birthDate, Date deathDate) {
+	public Auteur(int id, String nom, String prenom, String nationalite, Date birthDate, Date deathDate) {
 		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
@@ -32,11 +46,11 @@ public class Auteur {
 		this.deathDate = deathDate;
 	}
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

@@ -1,38 +1,61 @@
 package com.openmuseum.core.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
 public class Oeuvre {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	@Column(name="idOeuvre", unique=true, nullable=false)
+	private int id;
 	
+	@Column(name="denomination", unique=false, nullable=true)
 	private String denomination;
+	
+	@Column(name="titre", unique=false, nullable=false)
 	private String titre;
+	
 	// private PeriodeCrea periodeCrea; ?
 	private String periodeCrea;
+	
+	@Column(name="materiaux", unique=false, nullable=true)
 	private String materiaux;
+	
+	@Column(name="dimensions", unique=false, nullable=true)
 	private String dimensions;
+	
+	@Column(name="decouverte", unique=false, nullable=true)
 	private String decouverte;
+	
+	@Column
 	// reference OR numInventaire ?
 	private String reference;
+	
+	@Column(name="domaine", unique=false, nullable=true)
 	private Domaine domaine;
+	
+	@Column(name="auteur", unique=false, nullable=false)
 	private Auteur auteur;
+	
+	@Column(name="epoque", unique=false, nullable=true)
 	private Epoque epoque;
+	
+	@Column(name="localisation", unique=false, nullable=false)
 	private Musee localisation;
+	
+	@Column(name="statutJuridique", unique=false, nullable=false)
 	private StatutJuridique statutJuridique;
 	
 	public Oeuvre() {
 
 	}
 
-	public Oeuvre(Long id, String denomination, String titre, String periodeCrea, String materiaux, String dimensions,
+	public Oeuvre(int id, String denomination, String titre, String periodeCrea, String materiaux, String dimensions,
 			String decouverte, String reference, Domaine domaine, Auteur auteur, Epoque epoque, Musee localisation,
 			StatutJuridique statutJuridique) {
 		this.id = id;
@@ -50,11 +73,11 @@ public class Oeuvre {
 		this.statutJuridique = statutJuridique;
 	}
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

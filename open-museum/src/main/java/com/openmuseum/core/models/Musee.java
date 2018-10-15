@@ -2,6 +2,7 @@ package com.openmuseum.core.models;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -10,22 +11,36 @@ public class Musee {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	@Column(name="idMusee", unique=true, nullable=false)
+	private int id;
 	
+	@Column(name="nom", unique=true, nullable=false)
 	private String nom;
+	
+	@Column(name="ville", unique=false, nullable=true)
 	private String ville;
+
+	@Column(name="departement", unique=false, nullable=true)
 	private String departement;
+	
+	@Column(name="region", unique=false, nullable=true)
 	private String region;
+	
+	@Column(name="codePostal", unique=false, nullable=true)
 	// pas de int cause dept 0+chiffre
 	private String codePostal;
+	
+	@Column(name="dateOuverture", unique=false, nullable=true)
 	private Date dateOuverture;
+	
+	@Column(name="accessibilite", unique=false, nullable=true)
 	private Boolean accessible;
 	
 	public Musee() {
 		
 	}
 	
-	public Musee(Long id, String nom, String ville, String departement, String region, String codePostal, Date dateOuverture,
+	public Musee(int id, String nom, String ville, String departement, String region, String codePostal, Date dateOuverture,
 			Boolean accessible) {
 		this.id = id;
 		this.nom = nom;
@@ -37,11 +52,11 @@ public class Musee {
 		this.accessible = accessible;
 	}
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
