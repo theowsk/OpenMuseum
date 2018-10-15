@@ -22,7 +22,7 @@ public class Oeuvre {
 	private StatutJuridique statutJuridique;
 	
 	public Oeuvre() {
-		super();
+
 	}
 
 	public Oeuvre(String denomination, String titre, String periodeCrea, String materiaux, String dimensions,
@@ -138,9 +138,4 @@ public class Oeuvre {
 		this.statutJuridique = statutJuridique;
 	}
 	
-	
-	
-	
-	
-
 }

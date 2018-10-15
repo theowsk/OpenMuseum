@@ -7,6 +7,17 @@ public class StatutJuridique {
 	private Boolean proprietePrivee;
 	private Boolean don;
 	
+	public StatutJuridique() {
+		
+	}
+
+	public StatutJuridique(String proprietaire, String identiteJuridique, Boolean proprietePrivee, Boolean don) {
+		this.proprietaire = proprietaire;
+		this.identiteJuridique = identiteJuridique;
+		this.proprietePrivee = proprietePrivee;
+		this.don = don;
+	}
+
 	public String getProprietaire() {
 		return proprietaire;
 	}

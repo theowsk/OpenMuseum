@@ -13,6 +13,21 @@ public class Musee {
 	private Date dateOuverture;
 	private Boolean accessible;
 	
+	public Musee() {
+		
+	}
+	
+	public Musee(String nom, String ville, String departement, String region, String codePostal, Date dateOuverture,
+			Boolean accessible) {
+		this.nom = nom;
+		this.ville = ville;
+		this.departement = departement;
+		this.region = region;
+		this.codePostal = codePostal;
+		this.dateOuverture = dateOuverture;
+		this.accessible = accessible;
+	}
+
 	public String getNom() {
 		return nom;
 	}

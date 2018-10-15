@@ -11,10 +11,22 @@ public class Auteur {
 	private Date deathDate;
 	// private Epoque epoqueAppartenance;
 	
+	public Auteur() {
+		
+	}
+	
+	public Auteur(String nom, String prenom, String nationalite, Date birthDate, Date deathDate) {
+		this.nom = nom;
+		this.prenom = prenom;
+		this.nationalite = nationalite;
+		this.birthDate = birthDate;
+		this.deathDate = deathDate;
+	}
+
 	public String getNom() {
 		return nom;
 	}
-	
+
 	public void setNom(String nom) {
 		this.nom = nom;
 	}

@@ -8,6 +8,16 @@ public class Domaine {
 	private Date estDebDate;
 	private Date estEndDate;
 	
+	public Domaine() {
+		
+	}
+	
+	public Domaine(String libelle, Date estDebDate, Date estEndDate) {
+		this.libelle = libelle;
+		this.estDebDate = estDebDate;
+		this.estEndDate = estEndDate;
+	}
+
 	public String getLibelle() {
 		return libelle;
 	}

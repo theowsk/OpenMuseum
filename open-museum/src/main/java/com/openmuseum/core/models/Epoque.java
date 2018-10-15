@@ -6,6 +6,16 @@ public class Epoque {
 	private String siecle;
 	private String libelle;
 	
+	public Epoque() {
+		
+	}
+	
+	public Epoque(String decoupage, String siecle, String libelle) {
+		this.decoupage = decoupage;
+		this.siecle = siecle;
+		this.libelle = libelle;
+	}
+
 	public String getDecoupage() {
 		return decoupage;
 	}
