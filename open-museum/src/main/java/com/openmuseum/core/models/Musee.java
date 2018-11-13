@@ -1,12 +1,17 @@
 package com.openmuseum.core.models;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
+@Entity
 public class Musee {
 	
 	@Id
@@ -35,6 +40,9 @@ public class Musee {
 	
 	@Column(name="accessibilite", unique=false, nullable=true)
 	private Boolean accessible;
+	
+	@OneToMany(targetEntity=Oeuvre.class, mappedBy="localisation", fetch=FetchType.LAZY)
+	private List<Oeuvre> oeuvres;
 	
 	public Musee() {
 		
@@ -115,7 +123,14 @@ public class Musee {
 	public void setAccessible(Boolean accessible) {
 		this.accessible = accessible;
 	}
-	
+
+	public List<Oeuvre> getOeuvres() {
+		return oeuvres;
+	}
+
+	public void setOeuvres(List<Oeuvre> oeuvres) {
+		this.oeuvres = oeuvres;
+	}
 	
 
 }

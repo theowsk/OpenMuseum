@@ -1,12 +1,15 @@
 package com.openmuseum.core.models;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Auteur {
@@ -16,13 +19,13 @@ public class Auteur {
 	@Column(name="idAuteur", unique=true, nullable=false)
 	private int id;
 	
-	@Column(name="nom", unique=false, nullable=false)
+	@Column(name="nom", unique=false, nullable=false, length=60)
 	private String nom;
 	
-	@Column(name="prenom", unique=false, nullable=true)
+	@Column(name="prenom", unique=false, nullable=true, length=30)
 	private String prenom;
 	
-	@Column(name="nationalite", unique=false, nullable=true)
+	@Column(name="nationalite", unique=false, nullable=true, length=50)
 	private String nationalite;
 	
 	@Column(name="dateNaissance", unique=false, nullable=true)
@@ -31,8 +34,9 @@ public class Auteur {
 	@Column(name="dateMort", unique=false, nullable=true)
 	private Date deathDate;
 	
-	// private Epoque epoqueAppartenance;
-	
+	@OneToMany(targetEntity=Oeuvre.class, mappedBy="auteur", fetch=FetchType.LAZY)
+	private List<Oeuvre> oeuvres;
+
 	public Auteur() {
 		
 	}
@@ -92,6 +96,14 @@ public class Auteur {
 	
 	public void setDeathDate(Date deathDate) {
 		this.deathDate = deathDate;
+	}
+	
+	public List<Oeuvre> getOeuvres() {
+		return oeuvres;
+	}
+
+	public void setOeuvres(List<Oeuvre> oeuvres) {
+		this.oeuvres = oeuvres;
 	}
 
 }

@@ -1,10 +1,16 @@
 package com.openmuseum.core.models;
 
+import java.util.List;
+
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
+@Entity
 public class Epoque {
 	
 	@Id
@@ -12,14 +18,17 @@ public class Epoque {
 	@Column(name="idEpoque", unique=true, nullable=false)
 	private int id;
 	
-	@Column(name="decoupage", unique=false, nullable=true)
+	@Column(name="decoupage", unique=false, nullable=true, length=20)
 	private String decoupage;
 	
-	@Column(name="siecle", unique=false, nullable=false)
+	@Column(name="siecle", unique=false, nullable=false, length=20)
 	private String siecle;
 	
-	@Column(name="libelle", unique=false, nullable=false)
+	@Column(name="libelle", unique=false, nullable=false, length=350)
 	private String libelle;
+	
+	@OneToMany(targetEntity=Oeuvre.class, mappedBy="epoque", fetch=FetchType.LAZY)
+	private List<Oeuvre> oeuvres;
 	
 	public Epoque() {
 		
@@ -64,7 +73,14 @@ public class Epoque {
 	public void setLibelle(String libelle) {
 		this.libelle = libelle;
 	}
-	
+
+	public List<Oeuvre> getOeuvres() {
+		return oeuvres;
+	}
+
+	public void setOeuvres(List<Oeuvre> oeuvres) {
+		this.oeuvres = oeuvres;
+	}
 	
 
 }

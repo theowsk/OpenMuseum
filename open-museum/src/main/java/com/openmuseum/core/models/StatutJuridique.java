@@ -1,12 +1,18 @@
 package com.openmuseum.core.models;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
+import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+@Entity
 public class StatutJuridique {
 	
 	@Id
-	@Column(name="idOeuvre", unique=true, nullable=false)
+	@Column(name="idOeuvreStatut", unique=true, nullable=false)
 	// FK
 	private int idOeuvre;
 	
@@ -21,6 +27,9 @@ public class StatutJuridique {
 	
 	@Column(name="don", unique=false, nullable=true)
 	private Boolean don;
+	
+	@OneToMany(targetEntity=Oeuvre.class, mappedBy="statutJuridique", fetch=FetchType.LAZY)
+	private List<Oeuvre> oeuvres;
 	
 	public StatutJuridique() {
 		
@@ -72,6 +81,14 @@ public class StatutJuridique {
 	
 	public void setDon(Boolean don) {
 		this.don = don;
+	}
+
+	public List<Oeuvre> getOeuvres() {
+		return oeuvres;
+	}
+
+	public void setOeuvres(List<Oeuvre> oeuvres) {
+		this.oeuvres = oeuvres;
 	}
 
 }

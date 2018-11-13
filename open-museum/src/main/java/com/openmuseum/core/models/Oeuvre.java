@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Oeuvre {
@@ -36,19 +38,24 @@ public class Oeuvre {
 	// reference OR numInventaire ?
 	private String reference;
 	
-	@Column(name="domaine", unique=false, nullable=true)
+	@ManyToOne
+	@JoinColumn(name="idDomaine")
 	private Domaine domaine;
 	
-	@Column(name="auteur", unique=false, nullable=false)
+	@ManyToOne
+	@JoinColumn(name="idAuteur")
 	private Auteur auteur;
 	
-	@Column(name="epoque", unique=false, nullable=true)
+	@ManyToOne
+	@JoinColumn(name="idEpoque")
 	private Epoque epoque;
 	
-	@Column(name="localisation", unique=false, nullable=false)
+	@ManyToOne
+	@JoinColumn(name="idMusee")
 	private Musee localisation;
 	
-	@Column(name="statutJuridique", unique=false, nullable=false)
+	@ManyToOne
+	@JoinColumn(name="idOeuvreStatut")
 	private StatutJuridique statutJuridique;
 	
 	public Oeuvre() {
