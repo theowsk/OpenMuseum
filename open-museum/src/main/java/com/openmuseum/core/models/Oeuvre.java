@@ -54,17 +54,14 @@ public class Oeuvre {
 	@JoinColumn(name="idMusee")
 	private Musee localisation;
 	
-	@ManyToOne
-	@JoinColumn(name="idOeuvreStatut")
-	private StatutJuridique statutJuridique;
 	
 	public Oeuvre() {
 
 	}
 
 	public Oeuvre(int id, String denomination, String titre, String periodeCrea, String materiaux, String dimensions,
-			String decouverte, String reference, Domaine domaine, Auteur auteur, Epoque epoque, Musee localisation,
-			StatutJuridique statutJuridique) {
+			String decouverte, String reference, Domaine domaine, Auteur auteur, Epoque epoque, Musee localisation
+			) {
 		this.id = id;
 		this.denomination = denomination;
 		this.titre = titre;
@@ -77,7 +74,6 @@ public class Oeuvre {
 		this.auteur = auteur;
 		this.epoque = epoque;
 		this.localisation = localisation;
-		this.statutJuridique = statutJuridique;
 	}
 
 	public int getId() {
@@ -176,12 +172,5 @@ public class Oeuvre {
 		this.localisation = localisation;
 	}
 	
-	public StatutJuridique getStatutJuridique() {
-		return statutJuridique;
-	}
-	
-	public void setStatutJuridique(StatutJuridique statutJuridique) {
-		this.statutJuridique = statutJuridique;
-	}
 	
 }

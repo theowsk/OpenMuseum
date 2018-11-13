@@ -18,13 +18,7 @@ public class Epoque {
 	@Column(name="idEpoque", unique=true, nullable=false)
 	private int id;
 	
-	@Column(name="decoupage", unique=false, nullable=true, length=20)
-	private String decoupage;
-	
-	@Column(name="siecle", unique=false, nullable=false, length=20)
-	private String siecle;
-	
-	@Column(name="libelle", unique=false, nullable=false, length=350)
+	@Column(name="libelle", unique=false, nullable=false, length=255)
 	private String libelle;
 	
 	@OneToMany(targetEntity=Oeuvre.class, mappedBy="epoque", fetch=FetchType.LAZY)
@@ -34,10 +28,8 @@ public class Epoque {
 		
 	}
 	
-	public Epoque(int id, String decoupage, String siecle, String libelle) {
+	public Epoque(int id, String libelle) {
 		this.id = id;
-		this.decoupage = decoupage;
-		this.siecle = siecle;
 		this.libelle = libelle;
 	}
 
@@ -48,28 +40,11 @@ public class Epoque {
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	public String getDecoupage() {
-		return decoupage;
-	}
-	
-	public void setDecoupage(String decoupage) {
-		this.decoupage = decoupage;
-	}
-	
-	public String getSiecle() {
-		return siecle;
-	}
-	
-	public void setSiecle(String siecle) {
-		this.siecle = siecle;
-	}
 	
 	public String getLibelle() {
 		return libelle;
 	}
 	
-	// setLibelle(String decoupage, String siecle) avec append ?
 	public void setLibelle(String libelle) {
 		this.libelle = libelle;
 	}
