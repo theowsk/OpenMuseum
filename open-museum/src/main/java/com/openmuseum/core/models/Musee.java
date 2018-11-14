@@ -41,13 +41,13 @@ public class Musee {
 	private String telephone;
 
 	@Column(name="periode_ouverture", unique=false, nullable=true, length=255)
-	private String periode_ouverture;
+	private String periodeOuverture;
 	
 	@Column(name="site_web", unique=false, nullable=true, length=255)
-	private String site_web;
+	private String siteWeb;
 	
 	@Column(name="fermeture_annuelle", unique=false, nullable=true, length=255)
-	private String fermeture_annuelle;
+	private String fermetureAnnuelle;
 	
 	@OneToMany(targetEntity=Oeuvre.class, mappedBy="localisation", fetch=FetchType.LAZY)
 	private List<Oeuvre> oeuvres;
@@ -55,10 +55,10 @@ public class Musee {
 	public Musee() {
 		
 	}
-	
-	public Musee(int id, String nom, String adresse, String ville, String departement, String region, 
-			String codePostal, String telephone, String periode_ouverture, String site_web, String fermeture_annuelle) 
-	{
+
+	public Musee(int id, String nom, String adresse, String ville, String departement, String region, String codePostal,
+			String telephone, String periodeOuverture, String siteWeb, String fermetureAnnuelle, List<Oeuvre> oeuvres) {
+		super();
 		this.id = id;
 		this.nom = nom;
 		this.adresse = adresse;
@@ -67,11 +67,13 @@ public class Musee {
 		this.region = region;
 		this.codePostal = codePostal;
 		this.telephone = telephone;
-		this.periode_ouverture = periode_ouverture;
-		this.site_web = site_web;
-		this.fermeture_annuelle = fermeture_annuelle;
-
+		this.periodeOuverture = periodeOuverture;
+		this.siteWeb = siteWeb;
+		this.fermetureAnnuelle = fermetureAnnuelle;
+		this.oeuvres = oeuvres;
 	}
+
+
 
 	public int getId() {
 		return id;
@@ -137,28 +139,28 @@ public class Musee {
 		this.telephone = telephone;
 	}
 
-	public String getPeriode_ouverture() {
-		return periode_ouverture;
+	public String getPeriodeOuverture() {
+		return periodeOuverture;
 	}
 
-	public void setPeriode_ouverture(String periode_ouverture) {
-		this.periode_ouverture = periode_ouverture;
+	public void setPeriodeOuverture(String periodeOuverture) {
+		this.periodeOuverture = periodeOuverture;
 	}
 
-	public String getSite_web() {
-		return site_web;
+	public String getSiteWeb() {
+		return siteWeb;
 	}
 
-	public void setSite_web(String site_web) {
-		this.site_web = site_web;
+	public void setSiteWeb(String siteWeb) {
+		this.siteWeb = siteWeb;
 	}
 
-	public String getFermeture_annuelle() {
-		return fermeture_annuelle;
+	public String getFermetureAnnuelle() {
+		return fermetureAnnuelle;
 	}
 
-	public void setFermeture_annuelle(String fermeture_annuelle) {
-		this.fermeture_annuelle = fermeture_annuelle;
+	public void setFermetureAnnuelle(String fermetureAnnuelle) {
+		this.fermetureAnnuelle = fermetureAnnuelle;
 	}
 
 	public List<Oeuvre> getOeuvres() {

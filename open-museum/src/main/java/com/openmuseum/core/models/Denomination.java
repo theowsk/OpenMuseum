@@ -17,5 +17,21 @@ public class Denomination {
 	
 	@Column(name="lib", unique=false, nullable=false, length=60)
 	private String lib;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getLib() {
+		return lib;
+	}
+
+	public void setLib(String lib) {
+		this.lib = lib;
+	}
 	
 }

@@ -16,27 +16,29 @@ public class Oeuvre {
 	@Column(name="idOeuvre", unique=true, nullable=false)
 	private int id;
 	
-	@Column(name="denomination", unique=false, nullable=true)
+	@Column(name="denomination", unique=false, nullable=true, length=150)
 	private String denomination;
 	
-	@Column(name="titre", unique=false, nullable=false)
+	@Column(name="titre", unique=false, nullable=false, length=300)
 	private String titre;
 	
-	// private PeriodeCrea periodeCrea; ?
+	@Column(name="periode_creation", unique=false, nullable=true, length=100)
 	private String periodeCrea;
 	
-	@Column(name="materiaux", unique=false, nullable=true)
+	@Column(name="materiaux", unique=false, nullable=true, length=150)
 	private String materiaux;
 	
-	@Column(name="dimensions", unique=false, nullable=true)
+	@Column(name="dimensions", unique=false, nullable=true, length=100)
 	private String dimensions;
 	
-	@Column(name="decouverte", unique=false, nullable=true)
+	@Column(name="decouverte", unique=false, nullable=true, length=250)
 	private String decouverte;
 	
-	@Column
-	// reference OR numInventaire ?
+	@Column (name="reference", unique=false, nullable=true, length=100)
 	private String reference;
+	
+	@Column(name="num_inventaire", unique=false, nullable=true, length=50)
+	private String numInventaire;
 	
 	@ManyToOne
 	@JoinColumn(name="idDomaine")
@@ -60,8 +62,9 @@ public class Oeuvre {
 	}
 
 	public Oeuvre(int id, String denomination, String titre, String periodeCrea, String materiaux, String dimensions,
-			String decouverte, String reference, Domaine domaine, Auteur auteur, Epoque epoque, Musee localisation
-			) {
+			String decouverte, String reference, String numInventaire, Domaine domaine, Auteur auteur, Epoque epoque,
+			Musee localisation) {
+		super();
 		this.id = id;
 		this.denomination = denomination;
 		this.titre = titre;
@@ -70,6 +73,7 @@ public class Oeuvre {
 		this.dimensions = dimensions;
 		this.decouverte = decouverte;
 		this.reference = reference;
+		this.numInventaire = numInventaire;
 		this.domaine = domaine;
 		this.auteur = auteur;
 		this.epoque = epoque;
@@ -171,6 +175,13 @@ public class Oeuvre {
 	public void setLocalisation(Musee localisation) {
 		this.localisation = localisation;
 	}
-	
+
+	public String getNumInventaire() {
+		return numInventaire;
+	}
+
+	public void setNumInventaire(String numInventaire) {
+		this.numInventaire = numInventaire;
+	}
 	
 }
