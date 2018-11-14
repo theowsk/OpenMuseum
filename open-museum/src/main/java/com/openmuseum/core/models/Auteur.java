@@ -1,6 +1,5 @@
 package com.openmuseum.core.models;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -25,14 +24,14 @@ public class Auteur {
 	@Column(name="prenom", unique=false, nullable=true, length=30)
 	private String prenom;
 	
-	@Column(name="nationalite", unique=false, nullable=true, length=50)
-	private String nationalite;
+	@Column(name="nomUsage", unique=false, nullable=false, length=60)
+	private String nomUsage;
 	
-	@Column(name="dateNaissance", unique=false, nullable=true)
-	private Date birthDate;
+	@Column(name="prenomUsage", unique=false, nullable=true, length=30)
+	private String prenomUsage;
 	
-	@Column(name="dateMort", unique=false, nullable=true)
-	private Date deathDate;
+	@Column(name="preposition", unique=false, nullable=true, length=50)
+	private String preposition;
 	
 	@OneToMany(targetEntity=Oeuvre.class, mappedBy="auteur", fetch=FetchType.LAZY)
 	private List<Oeuvre> oeuvres;
@@ -41,13 +40,13 @@ public class Auteur {
 		
 	}
 	
-	public Auteur(int id, String nom, String prenom, String nationalite, Date birthDate, Date deathDate) {
+	public Auteur(int id, String nom, String prenom, String nomUsage, String prenomUsage, String preposition) {
 		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
-		this.nationalite = nationalite;
-		this.birthDate = birthDate;
-		this.deathDate = deathDate;
+		this.nomUsage = nomUsage;
+		this.prenomUsage = prenomUsage;
+		this.preposition = preposition;
 	}
 
 	public int getId() {
@@ -74,28 +73,28 @@ public class Auteur {
 		this.prenom = prenom;
 	}
 	
-	public String getNationalite() {
-		return nationalite;
+	public String getNomUsage() {
+		return nomUsage;
+	}
+
+	public void setNomUsage(String nomUsage) {
+		this.nomUsage = nomUsage;
 	}
 	
-	public void setNationalite(String nationalite) {
-		this.nationalite = nationalite;
+	public String getPrenomUsage() {
+		return prenomUsage;
 	}
 	
-	public Date getBirthDate() {
-		return birthDate;
+	public void setPrenomUsage(String prenomUsage) {
+		this.prenomUsage = prenomUsage;
 	}
 	
-	public void setBirthDate(Date birthDate) {
-		this.birthDate = birthDate;
+	public String getPreposition() {
+		return preposition;
 	}
 	
-	public Date getDeathDate() {
-		return deathDate;
-	}
-	
-	public void setDeathDate(Date deathDate) {
-		this.deathDate = deathDate;
+	public void setPreposition(String preposition) {
+		this.preposition = preposition;
 	}
 	
 	public List<Oeuvre> getOeuvres() {
