@@ -9,7 +9,6 @@ import com.openmuseum.core.dao.repository.AuteurRepository;
 import com.openmuseum.core.models.Auteur;
 
 public class AuteurDaoImpl implements AuteurDao {
-
 	private final AuteurRepository auteurRepository;
 	//private final AuteurDAL auteurDAL;
 	

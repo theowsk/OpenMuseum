@@ -10,7 +10,6 @@ import com.openmuseum.core.models.Oeuvre;
 
 public class OeuvreDaoImpl implements OeuvreDao {
 	private final OeuvreRepository oeuvreRepository;
-	//private final AuteurDAL auteurDAL;
 	
 	@Autowired
 	public OeuvreDaoImpl (OeuvreRepository oeuvreRepository) {

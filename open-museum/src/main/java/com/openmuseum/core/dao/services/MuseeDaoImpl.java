@@ -9,9 +9,7 @@ import com.openmuseum.core.dao.repository.MuseeRepository;
 import com.openmuseum.core.models.Musee;
 
 public class MuseeDaoImpl implements MuseeDao  {
-
 	private final MuseeRepository museeRepository;
-	//private final AuteurDAL auteurDAL;
 	
 	@Autowired
 	public MuseeDaoImpl (MuseeRepository museeRepository) {
