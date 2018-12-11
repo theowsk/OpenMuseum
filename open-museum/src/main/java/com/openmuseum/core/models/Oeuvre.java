@@ -47,7 +47,6 @@ public class Oeuvre {
 	private String numInventaire;
 	
 	//Déclaration des tables d'associations et des différentes jointures à réaliser
-	
 	@ManyToMany(fetch = FetchType.LAZY,
             cascade = {
                 CascadeType.PERSIST,

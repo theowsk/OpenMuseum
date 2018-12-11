@@ -1,14 +1,16 @@
 package com.openmuseum.core.models;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Musee {
@@ -49,15 +51,21 @@ public class Musee {
 	@Column(name="fermeture_annuelle", unique=false, nullable=true, length=255)
 	private String fermetureAnnuelle;
 	
-	@OneToMany(targetEntity=Oeuvre.class, mappedBy="localisation", fetch=FetchType.LAZY)
-	private List<Oeuvre> oeuvres;
+	//Déclaration des tables d'associations et des différentes jointures à réaliser
+	@ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                CascadeType.PERSIST,
+                CascadeType.MERGE
+            },
+            mappedBy = "musees")
+    private Set<Oeuvre> oeuvres = new HashSet<>();
 	
 	public Musee() {
 		
 	}
 
 	public Musee(int id, String nom, String adresse, String ville, String departement, String region, String codePostal,
-			String telephone, String periodeOuverture, String siteWeb, String fermetureAnnuelle, List<Oeuvre> oeuvres) {
+			String telephone, String periodeOuverture, String siteWeb, String fermetureAnnuelle, Set<Oeuvre> oeuvres) {
 		super();
 		this.id = id;
 		this.nom = nom;
@@ -72,8 +80,6 @@ public class Musee {
 		this.fermetureAnnuelle = fermetureAnnuelle;
 		this.oeuvres = oeuvres;
 	}
-
-
 
 	public int getId() {
 		return id;
@@ -163,11 +169,11 @@ public class Musee {
 		this.fermetureAnnuelle = fermetureAnnuelle;
 	}
 
-	public List<Oeuvre> getOeuvres() {
+	public Set<Oeuvre> getOeuvres() {
 		return oeuvres;
 	}
 
-	public void setOeuvres(List<Oeuvre> oeuvres) {
+	public void setOeuvres(Set<Oeuvre> oeuvres) {
 		this.oeuvres = oeuvres;
 	}
 

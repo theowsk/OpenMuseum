@@ -1,14 +1,16 @@
 package com.openmuseum.core.models;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Auteur {
@@ -33,20 +35,27 @@ public class Auteur {
 	@Column(name="preposition", unique=false, nullable=true, length=50)
 	private String preposition;
 	
-	@OneToMany(targetEntity=Oeuvre.class, mappedBy="auteur", fetch=FetchType.LAZY)
-	private List<Oeuvre> oeuvres;
+	//Déclaration des tables d'associations et des différentes jointures à réaliser
+	@ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                CascadeType.PERSIST,
+                CascadeType.MERGE
+            },
+            mappedBy = "auteurs")
+    private Set<Oeuvre> oeuvres = new HashSet<>();
 
 	public Auteur() {
 		
 	}
 	
-	public Auteur(int id, String nom, String prenom, String nomUsage, String prenomUsage, String preposition) {
+	public Auteur(int id, String nom, String prenom, String nomUsage, String prenomUsage, String preposition, Set<Oeuvre> oeuvres) {
 		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.nomUsage = nomUsage;
 		this.prenomUsage = prenomUsage;
 		this.preposition = preposition;
+		this.oeuvres = oeuvres;
 	}
 
 	public int getId() {
@@ -97,11 +106,11 @@ public class Auteur {
 		this.preposition = preposition;
 	}
 	
-	public List<Oeuvre> getOeuvres() {
+	public Set<Oeuvre> getOeuvres() {
 		return oeuvres;
 	}
 
-	public void setOeuvres(List<Oeuvre> oeuvres) {
+	public void setOeuvres(Set<Oeuvre> oeuvres) {
 		this.oeuvres = oeuvres;
 	}
 

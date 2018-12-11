@@ -1,15 +1,17 @@
 package com.openmuseum.core.models;
 
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Domaine {
@@ -28,18 +30,26 @@ public class Domaine {
 	@Column(name="estimatedDateFin", unique=false, nullable=true)
 	private Date estEndDate;
 	
-	@OneToMany(targetEntity=Oeuvre.class, mappedBy="domaine", fetch=FetchType.LAZY)
-	private List<Oeuvre> oeuvres;
+	
+	//Déclaration des tables d'associations et des différentes jointures à réaliser
+	@ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                CascadeType.PERSIST,
+                CascadeType.MERGE
+            },
+            mappedBy = "domaines")
+    private Set<Oeuvre> oeuvres = new HashSet<>();
 	
 	public Domaine() {
 		
 	}
 	
-	public Domaine(int id, String libelle, Date estDebDate, Date estEndDate) {
+	public Domaine(int id, String libelle, Date estDebDate, Date estEndDate, Set<Oeuvre> oeuvres) {
 		this.id = id;
 		this.libelle = libelle;
 		this.estDebDate = estDebDate;
 		this.estEndDate = estEndDate;
+		this.oeuvres = oeuvres;
 	}
 
 	public int getId() {
@@ -69,11 +79,11 @@ public class Domaine {
 		this.estEndDate = estEndDate;
 	}
 
-	public List<Oeuvre> getOeuvres() {
+	public Set<Oeuvre> getOeuvres() {
 		return oeuvres;
 	}
 
-	public void setOeuvres(List<Oeuvre> oeuvres) {
+	public void setOeuvres(Set<Oeuvre> oeuvres) {
 		this.oeuvres = oeuvres;
 	}
 	
