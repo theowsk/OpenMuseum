@@ -1,12 +1,18 @@
 package com.openmuseum.core.models;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Oeuvre {
@@ -40,21 +46,50 @@ public class Oeuvre {
 	@Column(name="num_inventaire", unique=false, nullable=true, length=50)
 	private String numInventaire;
 	
-	@ManyToOne
-	@JoinColumn(name="idDomaine")
-	private Domaine domaine;
+	//Déclaration des tables d'associations et des différentes jointures à réaliser
 	
-	@ManyToOne
-	@JoinColumn(name="idAuteur")
-	private Auteur auteur;
+	@ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                CascadeType.PERSIST,
+                CascadeType.MERGE
+            })
+    @JoinTable(name = "Oeuvre_Domaine",
+            joinColumns = { @JoinColumn(name = "idOeuvre") },
+            inverseJoinColumns = { @JoinColumn(name = "idDomaine") })
+    private Set<Domaine> domaines = new HashSet<>();
 	
-	@ManyToOne
-	@JoinColumn(name="idEpoque")
-	private Epoque epoque;
 	
-	@ManyToOne
-	@JoinColumn(name="idMusee")
-	private Musee localisation;
+	@ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                CascadeType.PERSIST,
+                CascadeType.MERGE
+            })
+    @JoinTable(name = "Oeuvre_Auteur",
+            joinColumns = { @JoinColumn(name = "idOeuvre") },
+            inverseJoinColumns = { @JoinColumn(name = "idAuteur") })
+    private Set<Auteur> auteurs = new HashSet<>();
+	
+	
+	@ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                CascadeType.PERSIST,
+                CascadeType.MERGE
+            })
+    @JoinTable(name = "Oeuvre_Epoque",
+            joinColumns = { @JoinColumn(name = "idOeuvre") },
+            inverseJoinColumns = { @JoinColumn(name = "idEpoque") })
+    private Set<Epoque> epoques = new HashSet<>();
+	
+	
+	@ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                CascadeType.PERSIST,
+                CascadeType.MERGE
+            })
+    @JoinTable(name = "Oeuvre_Musee",
+            joinColumns = { @JoinColumn(name = "idOeuvre") },
+            inverseJoinColumns = { @JoinColumn(name = "idMusee") })
+    private Set<Musee> localisations = new HashSet<>();
 	
 	
 	public Oeuvre() {
@@ -62,8 +97,8 @@ public class Oeuvre {
 	}
 
 	public Oeuvre(int id, String denomination, String titre, String periodeCrea, String materiaux, String dimensions,
-			String decouverte, String reference, String numInventaire, Domaine domaine, Auteur auteur, Epoque epoque,
-			Musee localisation) {
+			String decouverte, String reference, String numInventaire, Set<Domaine> domaines, Set<Auteur> auteurs, Set<Epoque> epoques,
+			Set<Musee> localisations) {
 		super();
 		this.id = id;
 		this.denomination = denomination;
@@ -74,10 +109,10 @@ public class Oeuvre {
 		this.decouverte = decouverte;
 		this.reference = reference;
 		this.numInventaire = numInventaire;
-		this.domaine = domaine;
-		this.auteur = auteur;
-		this.epoque = epoque;
-		this.localisation = localisation;
+		this.domaines = domaines;
+		this.auteurs = auteurs;
+		this.epoques = epoques;
+		this.localisations = localisations;
 	}
 
 	public int getId() {
@@ -144,36 +179,36 @@ public class Oeuvre {
 		this.reference = reference;
 	}
 	
-	public Domaine getDomaine() {
-		return domaine;
+	public Set<Domaine> getDomaine() {
+		return domaines;
 	}
 	
-	public void setDomaine(Domaine domaine) {
-		this.domaine = domaine;
+	public void setDomaine(Set<Domaine> domaines) {
+		this.domaines = domaines;
 	}
 	
-	public Auteur getAuteur() {
-		return auteur;
+	public Set<Auteur> getAuteur() {
+		return auteurs;
 	}
 	
-	public void setAuteur(Auteur auteur) {
-		this.auteur = auteur;
+	public void setAuteur(Set<Auteur> auteurs) {
+		this.auteurs = auteurs;
 	}
 	
-	public Epoque getEpoque() {
-		return epoque;
+	public Set<Epoque> getEpoque() {
+		return epoques;
 	}
 	
-	public void setEpoque(Epoque epoque) {
-		this.epoque = epoque;
+	public void setEpoque(Set<Epoque> epoques) {
+		this.epoques = epoques;
 	}
 	
-	public Musee getLocalisation() {
-		return localisation;
+	public Set<Musee> getLocalisation() {
+		return localisations;
 	}
 	
-	public void setLocalisation(Musee localisation) {
-		this.localisation = localisation;
+	public void setLocalisation(Set<Musee> localisations) {
+		this.localisations = localisations;
 	}
 
 	public String getNumInventaire() {
