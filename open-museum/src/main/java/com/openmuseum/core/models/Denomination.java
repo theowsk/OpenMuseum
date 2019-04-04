@@ -11,13 +11,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 
 @Entity
+@Table(name = "denomination")
 public class Denomination {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue
 	@Column(name="idDenomination", unique=true, nullable=false)
 	private int id;
 	
@@ -30,18 +32,10 @@ public class Denomination {
                 CascadeType.PERSIST,
                 CascadeType.MERGE
             },
-            mappedBy = "denominations")
-    private Set<Oeuvre> oeuvres = new HashSet<>();
+            mappedBy = "denomination")
+    private Set<Oeuvre> oeuvres;
 
-	public Denomination() {
-		
-	}
-	
-	public Denomination(int id, String libelle, Set<Oeuvre> oeuvres) {
-		this.id = id;
-		this.lib = libelle;
-		this.oeuvres = oeuvres;
-	}
+
 	public int getId() {
 		return id;
 	}

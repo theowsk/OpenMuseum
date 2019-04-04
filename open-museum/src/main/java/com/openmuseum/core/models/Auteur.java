@@ -1,21 +1,21 @@
 package com.openmuseum.core.models;
 
-import java.util.HashSet;
 import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "auteur")
 public class Auteur {
 	
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue
 	@Column(name="idAuteur", unique=true, nullable=false)
 	private int id;
 	
@@ -35,16 +35,15 @@ public class Auteur {
 	private String preposition;
 	
 	//Déclaration des tables d'associations et des différentes jointures à réaliser
-	/*
-	 * @ManyToMany(fetch = FetchType.LAZY,
+	@ManyToMany(fetch = FetchType.LAZY,
             cascade = {
                 CascadeType.PERSIST,
                 CascadeType.MERGE
             },
-            mappedBy = "auteurs")
-    private Set<Oeuvre> oeuvres = new HashSet<>();
+            mappedBy = "auteur")
+    private Set<Oeuvre> oeuvres;
 	
-	**
+	/**
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -74,20 +73,8 @@ public class Auteur {
             },
             mappedBy = "auteurs")
     private Set<Oeuvre> oeuvres = new HashSet<>();
-*/
-	public Auteur() {
-		
-	}
-	
-	public Auteur(int id, String nom, String prenom, String nomUsage, String prenomUsage, String preposition, Set<Oeuvre> oeuvres) {
-		this.id = id;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.nomUsage = nomUsage;
-		this.prenomUsage = prenomUsage;
-		this.preposition = preposition;
-		this.oeuvres = oeuvres;
-	}
+	 
+	*/
 
 	public int getId() {
 		return id;

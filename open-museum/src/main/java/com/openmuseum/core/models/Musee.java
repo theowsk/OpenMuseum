@@ -11,12 +11,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "musee")
 public class Musee {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue
 	@Column(name="idMusee", unique=true, nullable=false)
 	private int id;
 	
@@ -58,9 +60,9 @@ public class Musee {
                 CascadeType.MERGE
             },
             mappedBy = "musees")
-    private Set<Oeuvre> oeuvres = new HashSet<>();
+    private Set<Oeuvre> oeuvres;
 	
-	public Musee() {
+	/*public Musee() {
 		
 	}
 
@@ -79,7 +81,7 @@ public class Musee {
 		this.siteWeb = siteWeb;
 		this.fermetureAnnuelle = fermetureAnnuelle;
 		this.oeuvres = oeuvres;
-	}
+	}*/
 
 	public int getId() {
 		return id;

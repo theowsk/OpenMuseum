@@ -13,12 +13,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "oeuvre")
 public class Oeuvre {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue
 	@Column(name="idOeuvre", unique=true, nullable=false)
 	private int id;
 	
@@ -91,7 +93,7 @@ public class Oeuvre {
     private Set<Musee> localisations = new HashSet<>();
 	
 	
-	public Oeuvre() {
+	/*public Oeuvre() {
 
 	}
 
@@ -112,7 +114,7 @@ public class Oeuvre {
 		this.auteurs = auteurs;
 		this.epoques = epoques;
 		this.localisations = localisations;
-	}
+	}*/
 
 	public int getId() {
 		return id;
