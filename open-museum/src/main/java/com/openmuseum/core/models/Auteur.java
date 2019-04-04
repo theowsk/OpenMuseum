@@ -15,6 +15,37 @@ import javax.persistence.ManyToMany;
 @Entity
 public class Auteur {
 	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="idAuteur", unique=true, nullable=false)
+	private int id;
+	
+	@Column(name="nom", unique=false, nullable=false, length=60)
+	private String nom;
+	
+	@Column(name="prenom", unique=false, nullable=true, length=30)
+	private String prenom;
+	
+	@Column(name="nomUsage", unique=false, nullable=false, length=60)
+	private String nomUsage;
+	
+	@Column(name="prenomUsage", unique=false, nullable=true, length=30)
+	private String prenomUsage;
+	
+	@Column(name="preposition", unique=false, nullable=true, length=50)
+	private String preposition;
+	
+	//Déclaration des tables d'associations et des différentes jointures à réaliser
+	/*
+	 * @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                CascadeType.PERSIST,
+                CascadeType.MERGE
+            },
+            mappedBy = "auteurs")
+    private Set<Oeuvre> oeuvres = new HashSet<>();
+	
+	**
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="idAuteur", unique=true, nullable=false)
@@ -43,7 +74,7 @@ public class Auteur {
             },
             mappedBy = "auteurs")
     private Set<Oeuvre> oeuvres = new HashSet<>();
-
+*/
 	public Auteur() {
 		
 	}
